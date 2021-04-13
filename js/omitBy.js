@@ -1,5 +1,12 @@
 /**
- * Examples
+ * @function aaaaa
+ *
+ * 123
+ * 
+ * @description
+ * 123
+ *
+ * @examples
  * omitBy({ a: 1, b: '2', c: 3 }, x => typeof x === 'number'); // { b: '2' }
  */
 export const omitBy = (obj, fn) =>

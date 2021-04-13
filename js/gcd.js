@@ -1,4 +1,8 @@
 /**
+ * @module alg
+ * 
+ * @description
+ * 
  * 计算两个或多个数字/数组之间的最大公约数
  */
 export const gcd = (...arr) => {

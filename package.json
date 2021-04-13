@@ -1,0 +1,23 @@
+{
+  "name": "snippets",
+  "version": "1.0.0",
+  "description": "[htmldom](https://htmldom.dev/)",
+  "main": "index.js",
+  "scripts": {
+    "jsdoc": "jsdoc -c jsdoc.conf.json"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liurongqing/snippets.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/liurongqing/snippets/issues"
+  },
+  "homepage": "https://github.com/liurongqing/snippets#readme",
+  "devDependencies": {
+    "jsdoc": "^3.6.6"
+  }
+}
