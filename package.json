@@ -20,5 +20,8 @@
   "devDependencies": {
     "jsdoc": "^3.6.6",
     "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "minami": "^1.2.3"
   }
 }

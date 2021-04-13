@@ -1,14 +1,14 @@
 {
   "tags": {
-    "allowUnknownTags": true,
-    "dictionaries": ["jsdoc", "closure"]
+    "allowUnknownTags": true 
   },
   "source": {
     "include": ["./js"],
-    "includePattern": "\\.js$"
+    "includePattern": "\\.js$"   
   },
   "plugins": ["plugins/markdown"],
   "opts": {
+    "template": "node_modules/minami",
     "destination": "./jsdoc"
   }
 }
