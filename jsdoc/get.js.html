@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: get.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,40 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: get.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * 从对象中检索出一组选择器的值
+ *
+ * @param {Object} from 一个对象
+ * @param  {...any} selectors 选择器
+ * @returns 数组
+ *
+ * @example
+ * const obj = {
+ *  selector: { to: { val: 'val to select' } },
+ *  target: [1, 2, { a: 'test' }]
+ * }
+ * get(obj, 'selector.to.val', 'target[0]', 'target[2].a')
+ */
 
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+const get = (from, ...selectors) =>
+  [...selectors]
+    .map((s) => s.replace(/\[(^\[\]*)\]/g, '.$1.'))
+    .map(s => console.log('2....'))
+    .split('.')
+    .filter((t) => t !== '')
+    .reduce((prev, cur) => prev &amp;&amp; prev[cur], from)
+</code></pre>
+        </article>
+    </section>
 
 
 

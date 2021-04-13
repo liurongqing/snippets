@@ -1,11 +1,13 @@
 {
   "tags": {
-    "allowUnknownTags": true
+    "allowUnknownTags": true,
+    "dictionaries": ["jsdoc", "closure"]
   },
   "source": {
     "include": ["./js"],
     "includePattern": "\\.js$"
   },
+  "plugins": ["plugins/markdown"],
   "opts": {
     "destination": "./jsdoc"
   }

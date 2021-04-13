@@ -1,13 +1,13 @@
 /**
  * 返回数组的头
- * 
- * @module head javascript
- * 
+ *
+ * @function head
+ *
  * @param {Array} arr 数组
  * @returns 返回数组第一个元素
- * 
- * @example
- * 
+ *
+ * @example 1
+ *
  * head([1, 2, 3]) // 1
  * head([]) // undefined
  * head(null) // undefined
