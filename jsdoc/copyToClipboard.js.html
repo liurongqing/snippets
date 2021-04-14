@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>head.js - Documentation</title>
+    <title>copyToClipboard.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">head.js</h1>
+    <h1 class="page-title">copyToClipboard.js</h1>
     
 
     
@@ -40,21 +40,24 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 返回数组的头
- *
- * @function head
- *
- * @param {Array} arr 数组
- * @returns 返回数组第一个元素
- *
- * @example 1
- *
- * head([1, 2, 3]) // 1
- * head([]) // undefined
- * head(null) // undefined
- * head(undefined) // undefined
+ * 通过js复制文本
+ * 
+ * @param {String} str 要复制的文本
+ * 
+ * @example
+ * copyToClipboard('this is a text')
  */
-export const head = (arr) => (arr &amp;&amp; arr.length ? arr[0] : undefined)
+const copyToClipboard = (str) => {
+  const el = document.createElement('textarea')
+  el.value = str
+  el.setAttribute('readonly', '')
+  el.style.position = 'absolute'
+  el.style.left = '-9999px'
+  document.body.appendChild(el)
+  el.select()
+  document.execCommand('copy')
+  document.body.removeChild(el)
+}
 </code></pre>
         </article>
     </section>

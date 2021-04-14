@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>head.js - Documentation</title>
+    <title>unzipWith.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">head.js</h1>
+    <h1 class="page-title">unzipWith.js</h1>
     
 
     
@@ -40,21 +40,40 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 返回数组的头
- *
- * @function head
- *
+ * 通过函数，组合重组的值
  * @param {Array} arr 数组
- * @returns 返回数组第一个元素
+ * @param {Function} fn 函数
+ * @returns 新数组
  *
- * @example 1
+ * @example
  *
- * head([1, 2, 3]) // 1
- * head([]) // undefined
- * head(null) // undefined
- * head(undefined) // undefined
+ * unzipWith(
+ *  [
+ *    [1, 10, 100],
+ *    [2, 20, 200]
+ *  ],
+ *  (...args) => args.reduce((acc, v)=> acc + v, 0)
+ * )
+ * // [3, 30, 300]
  */
-export const head = (arr) => (arr &amp;&amp; arr.length ? arr[0] : undefined)
+const unzipWith = (arr, fn) =>
+  arr
+    .reduce(
+      (acc, val) => (val.forEach((v, i) => acc[i].push(v)), acc),
+      Array.from({
+        length: Math.max(...arr.map((x) => x.length)),
+      }).map((x) => [])
+    )
+    .map((val) => fn(...val))
+
+const a = unzipWith(
+  [
+    [1, 10, 100],
+    [2, 20, 200],
+  ],
+  (...args) => args.reduce((acc, v) => acc + v, 0)
+)
+console.log(a)
 </code></pre>
         </article>
     </section>

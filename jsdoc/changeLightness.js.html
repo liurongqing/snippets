@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>head.js - Documentation</title>
+    <title>changeLightness.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">head.js</h1>
+    <h1 class="page-title">changeLightness.js</h1>
     
 
     
@@ -40,21 +40,20 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 返回数组的头
+ * 更改 hsl 颜色字符串的明度值
+ * @param {Number} delta 明度改变的值大小
+ * @param {String} hslStr hsl 颜色字符串
+ * @returns 新的 hslStr
  *
- * @function head
- *
- * @param {Array} arr 数组
- * @returns 返回数组第一个元素
- *
- * @example 1
- *
- * head([1, 2, 3]) // 1
- * head([]) // undefined
- * head(null) // undefined
- * head(undefined) // undefined
+ * @example
+ * changeLightness(10, 'hsl(330, 50%, 50%)') // 'hsl(330, 50%, 60%)'
+ * changeLightness(-10, 'hsl(330, 50%, 50%)') // 'hsl(330, 50%, 40%)'
  */
-export const head = (arr) => (arr &amp;&amp; arr.length ? arr[0] : undefined)
+const changeLightness = (delta, hslStr) => {
+  const [hue, saturation, lightness] = hslStr.match(/\d+/g).map(Number)
+  const newLightness = Math.max(0, Math.min(100, lightness + parseFloat(delta)))
+  return `hsl(${hue}, ${saturation}%, ${newLightness}%)`
+}
 </code></pre>
         </article>
     </section>

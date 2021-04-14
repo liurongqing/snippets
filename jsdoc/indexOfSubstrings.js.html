@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>head.js - Documentation</title>
+    <title>indexOfSubstrings.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">head.js</h1>
+    <h1 class="page-title">indexOfSubstrings.js</h1>
     
 
     
@@ -40,21 +40,24 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 返回数组的头
- *
- * @function head
- *
- * @param {Array} arr 数组
- * @returns 返回数组第一个元素
- *
- * @example 1
- *
- * head([1, 2, 3]) // 1
- * head([]) // undefined
- * head(null) // undefined
- * head(undefined) // undefined
+ * 查找给定字符串中子字符串的所有索引
+ * @param {String} str 原字符串
+ * @param {String} searchValue 需要搜索的子字符串
+ * @returns Array
+ * 
+ * @example
+ * [...indexOfSubstrings('tiktok tok tok tik tok tik', 'tik')]; // [0, 15, 23]
  */
-export const head = (arr) => (arr &amp;&amp; arr.length ? arr[0] : undefined)
+const indexOfSubstrings = function* (str, searchValue) {
+  let i = 0
+  while (true) {
+    const r = str.indexOf(searchValue, i)
+    if (r !== -1) {
+      yield r
+      i = r + 1
+    } else return
+  }
+}
 </code></pre>
         </article>
     </section>

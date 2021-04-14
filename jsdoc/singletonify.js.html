@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>head.js - Documentation</title>
+    <title>singletonify.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">head.js</h1>
+    <h1 class="page-title">singletonify.js</h1>
     
 
     
@@ -40,21 +40,37 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 返回数组的头
- *
- * @function head
- *
- * @param {Array} arr 数组
- * @returns 返回数组第一个元素
- *
- * @example 1
- *
- * head([1, 2, 3]) // 1
- * head([]) // undefined
- * head(null) // undefined
- * head(undefined) // undefined
+ * 通过中间件，创建单例
+ * @param {Object} className 类
+ * @returns 单例
+ * 
+ * @example
+ * 
+ * class MyClass {
+ *  constructor(msg) {
+ *    this.msg = msg
+ *  }
+ * 
+ *  printMsg() {
+ *    console.log(this.msg)
+ *  }
+ * }
+ * 
+ * const MySingletonClass = singletonify(MyClass)
+ * const myObj = new MySingletonClass('first')
+ * myObj.printMsg() // 'first'
+ * const myObj2 = new MySingletonClass('second)
+ * myObj2.printMsg() // 'first'
  */
-export const head = (arr) => (arr &amp;&amp; arr.length ? arr[0] : undefined)
+const singletonify = (className) => {
+  return new Proxy(className.prototype.constructor, {
+    instance: null,
+    construct: (target, argumentsList) => {
+      if (!this.instance) this.instance = new target(...argumentsList)
+      return this.instance
+    },
+  })
+}
 </code></pre>
         </article>
     </section>

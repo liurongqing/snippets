@@ -1,6 +1,4 @@
-### HTMLDOM 相关的 js 代码片段
-
-[htmldom](https://htmldom.dev/)
+### 30秒，第4页
 
 ```ts
 function naa() {

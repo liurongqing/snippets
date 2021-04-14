@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>head.js - Documentation</title>
+    <title>runAsync.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">head.js</h1>
+    <h1 class="page-title">runAsync.js</h1>
     
 
     
@@ -40,21 +40,36 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 返回数组的头
- *
- * @function head
- *
- * @param {Array} arr 数组
- * @returns 返回数组第一个元素
- *
- * @example 1
- *
- * head([1, 2, 3]) // 1
- * head([]) // undefined
- * head(null) // undefined
- * head(undefined) // undefined
+ * 通过 webworker 在单独的线程中运行函数
+ * @param {Function} fn 在线程中运行的函数
+ * @returns Promise
+ * 
+ * @example
+ * const longRunningFunction = () => {
+ *  let result = 0
+ *  for (let i = 0; i &lt; 1000000; i++) {
+ *    result += i
+ *  }
+ *  return result
+ * }
+ * 
+ * runAsync(longRunningFunction).then(console.log)
  */
-export const head = (arr) => (arr &amp;&amp; arr.length ? arr[0] : undefined)
+const runAsync = (fn) => {
+  const worker = new Worker(
+    URL.createObjectURL(new Blob([`postMessage((${fn})())`]), {
+      type: 'application/javascript; charset=utf-8',
+    })
+  )
+  return new Promise((res, rej) => {
+    worker.onmessage = ({ data }) => {
+      res(data), worker.terminate()
+    }
+    worker.onerror = (err) => {
+      rej(err), worker.terminate()
+    }
+  })
+}
 </code></pre>
         </article>
     </section>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>head.js - Documentation</title>
+    <title>JSONtoCSV.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">head.js</h1>
+    <h1 class="page-title">JSONtoCSV.js</h1>
     
 
     
@@ -40,21 +40,36 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 返回数组的头
- *
- * @function head
- *
+ * 将对象数组转换为包含columns指定字符分隔符的CSV字符串
  * @param {Array} arr 数组
- * @returns 返回数组第一个元素
+ * @param {Array} columns 展示的列
+ * @param {String} delimiter 分隔的列
+ * @returns String
  *
- * @example 1
- *
- * head([1, 2, 3]) // 1
- * head([]) // undefined
- * head(null) // undefined
- * head(undefined) // undefined
+ * @example
+ * JSONtoCSV(
+ *  [{ a: 1, b: 2 }, { a: 3, b: 4, c: 5 }, { a: 6 }, { b: 7 }],
+ *  ['a', 'b']
+ * )
+ * // 'a,b\n"1","2"\n"3","4"\n"6",""\n"","7"'
+ * JSONtoCSV(
+ *  [{ a: 1, b: 2 }, { a: 3, b: 4, c: 5 }, { a: 6 }, { b: 7 }],
+ *  ['a', 'b'],
+ *  ';'
+ * )
+ * // 'a;b\n"1";"2"\n"3";"4"\n"6";""\n"";"7"'
  */
-export const head = (arr) => (arr &amp;&amp; arr.length ? arr[0] : undefined)
+const JSONtoCSV = (arr, columns, delimiter = ',') =>
+  [
+    columns.join(delimiter),
+    ...arr.map((obj) =>
+      columns.reduce(
+        (acc, key) =>
+          `${acc}${!acc.length ? '' : delimiter}"${!obj[key] ? '' : obj[key]}"`,
+        ''
+      )
+    ),
+  ].join('\n')
 </code></pre>
         </article>
     </section>

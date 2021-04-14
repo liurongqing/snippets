@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>head.js - Documentation</title>
+    <title>renameKeys.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">head.js</h1>
+    <h1 class="page-title">renameKeys.js</h1>
     
 
     
@@ -40,21 +40,24 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 返回数组的头
- *
- * @function head
- *
- * @param {Array} arr 数组
- * @returns 返回数组第一个元素
- *
- * @example 1
- *
- * head([1, 2, 3]) // 1
- * head([]) // undefined
- * head(null) // undefined
- * head(undefined) // undefined
+ * 根据提供的键映射，替换掉原对象的键的名称
+ * @param {Object} keysMap 映射键
+ * @param {Object} obj 原对象
+ * @returns 新对象
+ * 
+ * @example
+ * const obj = { name: 'Bobo', job: 'Front-End Master', shoeSize: 100 }
+ * renameKeys({ name: 'firstName', job: 'passion' }, obj)
+ * // { firstName: 'Bobo', passion: 'Front-End Master', shoeSize: 100 }
  */
-export const head = (arr) => (arr &amp;&amp; arr.length ? arr[0] : undefined)
+const renameKeys = (keysMap, obj) =>
+  Object.keys(obj).reduce(
+    (acc, key) => ({
+      ...acc,
+      ...{ [keysMap[key] || key]: obj[key] },
+    }),
+    {}
+  )
 </code></pre>
         </article>
     </section>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>head.js - Documentation</title>
+    <title>getURLParameters.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">head.js</h1>
+    <h1 class="page-title">getURLParameters.js</h1>
     
 
     
@@ -40,21 +40,24 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 返回数组的头
+ * 创建一个包含URL参数的对象
+ * @param {String} url URL
+ * @returns Object
  *
- * @function head
- *
- * @param {Array} arr 数组
- * @returns 返回数组第一个元素
- *
- * @example 1
- *
- * head([1, 2, 3]) // 1
- * head([]) // undefined
- * head(null) // undefined
- * head(undefined) // undefined
+ * @example
+ * getURLParameters('google.com') // {}
+ * getURLParameters('http://url.com/page?name=aDam&amp;surname=Smith)
+ * // {name: 'aDam', surname: 'Smith'}
  */
-export const head = (arr) => (arr &amp;&amp; arr.length ? arr[0] : undefined)
+const getURLParameters = (url) =>
+  url
+    .match(/([^?=&amp;])(=([^&amp;]*))/g || [])
+    .reduce(
+      (a, v) => (
+        (a[v.slice(0, v.indexOf('='))] = v.slice(v.indexOf('=') + 1)), a
+      ),
+      {}
+    )
 </code></pre>
         </article>
     </section>

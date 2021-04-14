@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>head.js - Documentation</title>
+    <title>toHSLObject.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">head.js</h1>
+    <h1 class="page-title">toHSLObject.js</h1>
     
 
     
@@ -40,21 +40,18 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 返回数组的头
+ * 将 hsl 颜色字符串转换成具有每种颜色值的对象
+ * @param {String} hslStr hsl颜色字符串
+ * @returns Object
  *
- * @function head
- *
- * @param {Array} arr 数组
- * @returns 返回数组第一个元素
- *
- * @example 1
- *
- * head([1, 2, 3]) // 1
- * head([]) // undefined
- * head(null) // undefined
- * head(undefined) // undefined
+ * @example
+ * toHSLObject('hsl(50, 10%, 10%)')
+ * // { hue: 50, saturation: 10, lightness: 10 }
  */
-export const head = (arr) => (arr &amp;&amp; arr.length ? arr[0] : undefined)
+const toHSLObject = (hslStr) => {
+  const [hue, saturation, lightness] = hslStr.match(/\d+/g).map(Number)
+  return { hue, saturation, lightness }
+}
 </code></pre>
         </article>
     </section>
