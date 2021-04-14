@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>head.js - Documentation</title>
+    <title>formatDuration.js - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">head.js</h1>
+    <h1 class="page-title">formatDuration.js</h1>
     
 
     
@@ -40,21 +40,30 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/**
- * 返回数组的头
+ * 给定毫秒返回可读可定制格式
+ * @param {number} ms 毫秒
+ * @returns string
  *
- * @function head
+ * @example
  *
- * @param {Array} arr 数组
- * @returns 返回数组第一个元素
- *
- * @example 1
- *
- * head([1, 2, 3]) // 1
- * head([]) // undefined
- * head(null) // undefined
- * head(undefined) // undefined
+ * formatDuration(1001) // '1 second, 1 millisecond'
+ * formatDuration(34325055574) 
+ * // '397 days, 6 hours, 44 minutes, 15 seconds, 574 milliseconds'
  */
-export const head = (arr) => (arr &amp;&amp; arr.length ? arr[0] : undefined)
+const formatDuration = (ms) => {
+  if (ms &lt; 0) ms = -ms
+  const time = {
+    day: Math.floor(ms / 86400000),
+    hour: Math.floor(ms / 3600000) % 24,
+    minute: Math.floor(ms / 60000) % 60,
+    second: Math.floor(ms / 1000) % 60,
+    millisecond: Math.floor(ms) % 1000,
+  }
+  return Object.entries(time)
+    .filter((val) => val[1] !== 0)
+    .map(([key, val]) => `${val} ${key}${val !== 1 ? 's' : ''}`)
+    .join(', ')
+}
 </code></pre>
         </article>
     </section>
