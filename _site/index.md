@@ -1,12 +1,21 @@
-# 123123
-123123
+# nest
 
-[link to code/a.md](./code/a.html)
+> 树状嵌套
+>
+> [源码入口](code/nest/index.html)
 
+```ts
+// 调用
+const data = []
+```
 
-## 123123
-123
+---
 
-## 123123
+# tofixed
 
-### 123123
+> 保留 2 位小数
+
+[源码入口](code/tofixed/index.html)
+
+```ts
+```
