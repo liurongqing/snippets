@@ -1,3 +1,4 @@
+![图片](./nest.svg)
 
 ```ts
 /**
@@ -8,5 +9,3 @@ const nest = (items, id = null, link = 'parent_id') =>
     .filter((item) => item[link] === id)
     .map((item) => ({ ...item, children: nest(items, item.id, link) }))
 ```
-
-![图片](./nest.svg)
