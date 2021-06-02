@@ -1,4 +1,4 @@
-[返回首页](/)
+[返回首页](../../)
 
 <div style="overflow-x: scroll;">
   <iframe
