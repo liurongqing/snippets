@@ -1,6 +1,6 @@
 ---
 layout: default
-title: [tofixed 函数]
+title: tofixed 函数
 ---
 
 <div style="overflow-x: scroll;">

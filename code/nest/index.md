@@ -1,6 +1,6 @@
 ---
 layout: default
-title: [nest 函数]
+title: nest 函数
 ---
 
 <div style="overflow-x: scroll;">
